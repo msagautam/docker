@@ -1,0 +1,3 @@
+[submodule "mysql/mysql-docker"]
+	path = mysql/mysql-docker
+	url = https://github.com/mysql/mysql-docker
