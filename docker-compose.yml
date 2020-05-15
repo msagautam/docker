@@ -7,21 +7,26 @@ services:
     environment:
       - MYSQL_ROOT_HOST=%
       - MYSQL_ROOT_PASSWORD=testpassword
+    user: "0:0"
+    volumes:
+      - ./mysql/data:/var/lib/mysql
     networks:
       mynetwork:
         aliases:
-          - mysql
+          - my_mysql_node
         ipv4_address: 172.18.0.2
         #ipv6_address: 2001:3984:3989::10
   web:
     build: flask
+    depends_on:
+      - db
     # expose publishes only in network
     expose:
       - "5000"
     # ports is used to publish to host
     #    ports:
     # - "5000:5000"
-    #
+
   proxy:
     build: haproxy
     depends_on:
@@ -64,6 +69,18 @@ services:
     volumes:
       - ./grafana/data:/var/lib/grafana
 
+  dbadmin:
+    image: phpmyadmin/phpmyadmin
+    expose:
+      - "8080"
+    environment:
+      - PMA_HOST=my_mysql_node
+    networks:
+      mynetwork:
+        ipv4_address: 172.18.0.8
+    depends_on:
+      - db
+
 networks:
   mynetwork:
     external:
@@ -73,3 +90,4 @@ networks:
       #config:
         #- subnet: "172.88.92.0/24"
         #- subnet: "2001:3984:3989::/64"
+
