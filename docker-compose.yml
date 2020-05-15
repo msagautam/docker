@@ -1,0 +1,19 @@
+version: '3.3'
+services:
+  web:
+    build: flask
+    #    ports:
+    # - "5000:5000"
+    #
+  proxy:
+    build: haproxy
+    depends_on:
+      - web
+
+  monitor:
+    image: "prom/prometheus"
+    depends_on:
+      - web
+      - proxy
+    links:
+      - "proxy:haproxy"

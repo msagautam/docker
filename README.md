@@ -21,3 +21,7 @@ docker image rm myapp:1.0
 List running containers and images
 docker ps -a
 docker images
+
+Docker compose rebuild docker images and spawn 2 "web" services
+docker-compose up --scale web=2 --build
+
