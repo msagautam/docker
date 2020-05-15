@@ -17,5 +17,11 @@ def test_world():
     #time.sleep(3)
     return 'Hey, we are testing Flask in docker container: %s!' % socket.gethostname()
 
+from random import random
+@app.route('/metrics')
+def metric_func():
+    return 'my_random_metric %f' % random()
+
+
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0')

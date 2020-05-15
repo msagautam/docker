@@ -41,3 +41,7 @@ services:
       - "3000:3000"
     depends_on:
       - monitor
+    user: "0:0"
+    volumes:
+      - ./grafana/data:/var/lib/grafana
+

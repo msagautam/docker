@@ -41,4 +41,9 @@ scrape_configs:
     metrics_path: /stats;csv
     static_configs:
       - targets: ['172.18.0.4:8404']
- 
+
+  - job_name: 'my_metric_mon'
+    scrape_interval: 5s
+    static_configs:
+      - targets: ['172.18.0.4:80']
+
