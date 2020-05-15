@@ -28,10 +28,10 @@ scrape_configs:
     static_configs:
     - targets: ['localhost:9090']
 
-# Node Export
+  # Node Export
   - job_name: 'haproxy_node_mon'
     scrape_interval: 5s
     static_configs:
-      - targets: ['172.18.0.4:9101']
+      - targets: ['172.18.0.4:8404']
       - labels:
           group: 'proxies'
