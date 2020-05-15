@@ -1,9 +1,24 @@
 version: '3.3'
 services:
+  db:
+    build: mysql/mysql-docker/5.7/
+    expose:
+      - "3306"
+    environment:
+      - MYSQL_ROOT_HOST=%
+      - MYSQL_ROOT_PASSWORD=testpassword
+    networks:
+      mynetwork:
+        aliases:
+          - mysql
+        ipv4_address: 172.18.0.2
+        #ipv6_address: 2001:3984:3989::10
   web:
     build: flask
+    # expose publishes only in network
     expose:
       - "5000"
+    # ports is used to publish to host
     #    ports:
     # - "5000:5000"
     #
@@ -15,6 +30,10 @@ services:
       - "80:80"
       - "9101:9101"
       - "8404:8404"
+    networks:
+      mynetwork:
+        aliases:
+          - haproxy
 
   monitor:
     #image: "prom/prometheus"
@@ -45,3 +64,12 @@ services:
     volumes:
       - ./grafana/data:/var/lib/grafana
 
+networks:
+  mynetwork:
+    external:
+      name: docker_default
+    #ipam:
+      #driver: default
+      #config:
+        #- subnet: "172.88.92.0/24"
+        #- subnet: "2001:3984:3989::/64"

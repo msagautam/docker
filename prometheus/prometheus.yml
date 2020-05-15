@@ -32,7 +32,7 @@ scrape_configs:
   - job_name: 'haproxy_metric_mon'
     scrape_interval: 5s
     static_configs:
-      - targets: ['172.18.0.4:8404']
+      - targets: ['172.18.0.5:8404']
       - labels:
           group: 'proxies'
 
@@ -40,10 +40,11 @@ scrape_configs:
     scrape_interval: 5s
     metrics_path: /stats;csv
     static_configs:
-      - targets: ['172.18.0.4:8404']
+      #- targets: ['172.18.0.5:8404']
+      - targets: ['docker_proxy_1:8404']
 
   - job_name: 'my_metric_mon'
     scrape_interval: 5s
     static_configs:
-      - targets: ['172.18.0.4:80']
+      - targets: ['haproxy:80']
 
