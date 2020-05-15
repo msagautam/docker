@@ -11,9 +11,16 @@ services:
       - web
 
   monitor:
-    image: "prom/prometheus"
+    #image: "prom/prometheus"
+    build: prometheus
     depends_on:
       - web
       - proxy
     links:
       - "proxy:haproxy"
+    volumes:
+      - ./prometheus:/prometheus
+        #- ./data/prometheus:/data
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+        #- '--storage.tsdb.path=/data'
