@@ -19,6 +19,8 @@ services:
   monitor:
     #image: "prom/prometheus"
     build: prometheus
+    # root user permissions on host for this container to mount volume in root folder
+    user: "0:0"
     depends_on:
       - web
       - proxy
