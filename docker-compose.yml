@@ -17,7 +17,7 @@ services:
         ipv4_address: 172.18.0.2
         #ipv6_address: 2001:3984:3989::10
   web:
-    build: flask
+    build: flask/App2
     depends_on:
       - db
     # expose publishes only in network

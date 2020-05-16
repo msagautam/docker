@@ -6,11 +6,12 @@ RUN apt-get install -y curl
 
 WORKDIR /root
 
-COPY flaskApps/requirements.txt .
+COPY ./requirements.txt .
 RUN pip3 install -r ./requirements.txt
 
-COPY firstApp.conf /etc/apache2/sites-available/
-ADD firstApp /var/www/firstApp
+COPY AssignmentsApp.conf /etc/apache2/sites-available/
+ADD AssignmentsApp /var/www/AssignmentsApp
+COPY AssignmentsApp.wsgi /var/www/
 COPY entrypoint.sh .
 
 ENTRYPOINT ["./entrypoint.sh"]

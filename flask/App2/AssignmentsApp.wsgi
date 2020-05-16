@@ -2,7 +2,7 @@
 import sys
 import logging
 logging.basicConfig(stream=sys.stderr)
-sys.path.insert(0,"/var/www/AssignmentsApp/")
+sys.path.insert(0,"/var/www/")
 
 # Virtual env activation
 #activate_this = '/path/to/env/bin/activate_this.py'

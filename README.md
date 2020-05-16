@@ -24,4 +24,5 @@ docker images
 
 Docker compose rebuild docker images and spawn 2 "web" services
 docker-compose up --scale web=2 --build
-
+docker container rm docker_web_1 docker_web_2 docker_db_1 docker_dbadmin_1 docker_proxy_1 docker_monitor_1 docker_graph_1
+docker rmi docker_web:latest docker_db:latest docker_proxy:latest docker_monitor:latest
