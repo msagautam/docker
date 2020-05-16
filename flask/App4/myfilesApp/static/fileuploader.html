@@ -1,0 +1,22 @@
+<html>
+  <head>
+    <title>File uploader</title>
+    <script src="{{ url_for('static', filename='dropzone/dist/dropzone.js') }}">
+      Dropzone.options.myfileuploader = {
+        paramName: "file", // The name that will be used to transfer the file
+        maxFilesize: 2, // MB
+        maxFiles: 3,
+        acceptedFiles: "image/*",
+        accept: function(file, done) {
+                  if (file.name == "justinbieber.jpg") {
+                      done("Naha, you don't.");
+                  }
+                  else { done(); }
+      }
+    </script>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='dropzone/dist/dropzone.css' }} />
+  </head>
+  <body>
+    <form action="/file-upload" class="dropzone" id="myfileuploader"></form>
+  </body>
+</html>
