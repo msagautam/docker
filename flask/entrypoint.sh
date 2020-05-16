@@ -14,4 +14,8 @@ cd /var/www/
 #export FLASK_APP=AssignmentsApp
 #flask run
 
-/bin/bash
+# For interactive terminal
+#/bin/bash
+
+# For never ending program
+tail -f /var/log/apache2/*
