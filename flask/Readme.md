@@ -12,3 +12,7 @@ copy firstApp.conf to /etc/apache2/sites-available/
 a2dissite 000-default.conf
 a2ensite firstApp.conf
 service apache2 reload
+
+
+# mount host mysql folder in pwd to /var/www/mysqlApp in container
+docker run -it -v "$(pwd)"/mysqlApp:/var/www/mysqlApp --rm myflask:3.0
