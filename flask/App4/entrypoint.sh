@@ -9,6 +9,8 @@ service apache2 reload
 #service apache2 restart
 
 cd /var/www/
+mkdir upload_data_files
+chmod 777 upload_data_files
 #python3 -m myfilesApp 
 
 #export FLASK_APP=myfilesApp

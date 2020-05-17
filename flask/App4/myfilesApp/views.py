@@ -16,14 +16,20 @@ def metric_func():
 
 from flask import render_template
 @app.route('/upload')
-def file_uploader():
-    return render_template('fileuploader.html')
+def upload_dropzone():
+    return render_template('dropzone.html')
+
+@app.route('/uppy')
+def upload_uppy():
+    return render_template('uppy.html')
 
 from flask import request
+import os
 @app.route('/myuploader', methods = ['GET', 'POST'])
 def upload_file():
     if request.method == 'POST':
         f = request.files['file']
-        f.save(f.filename)
+        #f.save(f.filename)
+        f.save(os.path.join('/var/www/upload_data_files/', f.filename))
         return 'file uploaded successfully'
     return 'file uploaded unsuccessful!'
