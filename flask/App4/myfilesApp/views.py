@@ -35,7 +35,7 @@ def allowed_file(filename):
     return '.' in filename and \
            filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
-@app.route('/myuploader', methods = ['GET', 'POST'])
+@app.route('/myuploader', methods = ['POST'])
 def upload_file():
     if request.method == 'POST':
         # check if the post request has the file part
@@ -45,14 +45,19 @@ def upload_file():
                 error="No file in request"
             ), 400
         for fi in request.files:
-            file = request.files[fi]
-            if file and allowed_file(file.filename):
-                filename = secure_filename(file.filename)
-                file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+            f = request.files[fi]
+            print("All files: %s" % f.filename)
+
+        for fi in request.files:
+            f = request.files[fi]
+            print("file: %s" % f.filename)
+            if f and allowed_file(f.filename):
+                filename = secure_filename(f.filename)
+                f.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
                 return jsonify(
                     message="ok"
                 ), 201
         return jsonify(
             error="File in request is not a valid type"
         ), 400
- 
+
