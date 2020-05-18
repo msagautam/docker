@@ -14,7 +14,7 @@ services:
       mynetwork:
         aliases:
           - my_mysql_node
-        ipv4_address: 172.18.0.2
+            #ipv4_address: 172.18.0.2
         #ipv6_address: 2001:3984:3989::10
   web:
     build: flask/App4
@@ -26,6 +26,9 @@ services:
     # ports is used to publish to host
     #    ports:
     # - "5000:5000"
+    volumes:
+      - ./flask/data:/var/www/upload_data_files
+
 
   proxy:
     build: haproxy
@@ -78,7 +81,7 @@ services:
       - PMA_HOST=my_mysql_node
     networks:
       mynetwork:
-        ipv4_address: 172.18.0.8
+              #ipv4_address: 172.18.0.8
     depends_on:
       - db
 

@@ -22,10 +22,16 @@ List running containers and images
 docker ps -a
 docker images
 
-Docker compose rebuild docker images and spawn 2 "web" services
+compose rebuild docker images and spawn 2 "web" services
 docker-compose up --scale web=2 --build
 docker container rm docker_web_1 docker_web_2 docker_db_1 docker_dbadmin_1 docker_proxy_1 docker_monitor_1 docker_graph_1
 docker rmi docker_web:latest docker_db:latest docker_proxy:latest docker_monitor:latest
+
+list all containers ipaddresses
+docker ps -q | xargs -n 1 docker inspect --format '{{ .Name }} {{range .NetworkSettings.Networks}} {{.IPAddress}}{{end}}' | sed 's#^/##';
+
+Remove all stopped containers, dangling images, networks, cache
+docker system prune
 
 # Read apache2 logs, usually present in /var/log/apache2 folder
 cat /var/log/apache2/error.log
