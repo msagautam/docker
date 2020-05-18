@@ -9,9 +9,9 @@ WORKDIR /root
 COPY ./requirements.txt .
 RUN pip3 install -r ./requirements.txt
 
-COPY AssignmentsApp.conf /etc/apache2/sites-available/
-ADD AssignmentsApp /var/www/AssignmentsApp
-COPY AssignmentsApp.wsgi /var/www/
+COPY PackagedApp.conf /etc/apache2/sites-available/
+ADD PackagedApp /var/www/PackagedApp
+COPY PackagedApp.wsgi /var/www/
 COPY entrypoint.sh .
 
 ENTRYPOINT ["./entrypoint.sh"]

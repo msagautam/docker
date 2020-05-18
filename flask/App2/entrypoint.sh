@@ -3,15 +3,15 @@
 service apache2 start
 
 a2dissite 000-default.conf
-a2ensite AssignmentsApp
+a2ensite PackagedApp
 service apache2 reload
 
 #service apache2 restart
 
 cd /var/www/
-#python3 -m AssignmentsApp 
+#python3 -m PackagedApp 
 
-#export FLASK_APP=AssignmentsApp
+#export FLASK_APP=PackagedApp
 #flask run
 
 # For interactive terminal

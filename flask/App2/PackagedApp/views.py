@@ -1,4 +1,4 @@
-from AssignmentsApp import app
+from PackagedApp import app
 
 import socket
 @app.route('/')
