@@ -2,6 +2,7 @@ from flask_sqlalchemy import SQLAlchemy
 
 from mysqlApp import app
 app.config['SQLALCHEMY_DATABASE_URI'] = "mysql+pymysql://root:testpassword@172.18.0.2/testdb"
+app.config['SQLALCHEMY_ECHO'] = True; #Debugging Enabled
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db = SQLAlchemy(app)

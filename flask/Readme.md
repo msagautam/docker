@@ -16,3 +16,7 @@ service apache2 reload
 
 # mount host mysql folder in pwd to /var/www/mysqlApp in container
 docker run -it -v "$(pwd)"/mysqlApp:/var/www/mysqlApp --rm myflask:3.0
+
+# To enable development features
+export FLASK_ENV=development
+flask run --host=0.0.0.0
