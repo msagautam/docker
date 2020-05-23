@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: my-first.pod
+spec:
+  containers:
+    - image: nginx
+      name: my-first1container
+      env:
+      - name: HOST_PORT
+        value: "127.0.0.1"
