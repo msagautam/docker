@@ -18,3 +18,7 @@ kubectl -n kube-system get pod kube-proxy -o yaml
 kubectl create -f service.yaml
 # Update the service if we have changed configuration in the yaml file
 kubectl apply -f service.yaml
+kubectl get pods --all-namespaces -o wide
+watch kubectl get pods -o wide
+kubectl exec -it mypod -- /bin/bash
+printenv
