@@ -35,3 +35,13 @@ docker system prune
 
 # Read apache2 logs, usually present in /var/log/apache2 folder
 cat /var/log/apache2/error.log
+
+#Upload to dockerhub
+docker login
+docker push mgautam/myapp:1.0
+
+#Tag git
+git commit -m "commit before tag"
+git tag -a v1.0 -m "version 1.0"
+git push origin v1.0
+git push

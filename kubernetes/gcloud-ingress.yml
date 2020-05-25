@@ -1,0 +1,19 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  annotations:
+    # This will create a new static ip in gcloud if not present
+    kubernetes.io/ingress.global-static-ip-name: "test-static-ip"
+    networking.gke.io/managed-certificates: test-web-ssl
+    #kubernetes.io/ingress.allow-http: "false"
+  name: ingress-test-https
+  namespace: default
+spec:
+  rules:
+  - host: test.mgautam.com
+    http:
+      paths:
+      - backend:
+          serviceName: test-web-service
+          servicePort: 80
+        path: /*

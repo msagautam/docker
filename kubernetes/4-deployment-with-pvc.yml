@@ -1,0 +1,51 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: test-web
+  name: test-web
+  namespace: default
+spec:
+
+  replicas: 1
+  selector:
+    matchLabels:
+      app: test-web
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app: test-web
+    spec:
+      containers:
+      - env:
+        - name: MYSQL_ROOT_PASSWORD
+          valueFrom:
+            configMapKeyRef:
+              key: MYSQL_ROOT_PASSWORD
+              name: test-web-config-mlyl
+        - name: TEST_ADMIN_PASSWORD
+          valueFrom:
+            configMapKeyRef:
+              key: TEST_ADMIN_PASSWORD
+              name: test-web-config-mlyl
+
+        image: mgautam/testapp:3.2
+        imagePullPolicy: IfNotPresent
+        name: testweb-1
+        resources: {}
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+      volumes:
+      - name: data
+        persistentVolumeClaim:
+          claimName: test-pvc
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      securityContext: {}
+      terminationGracePeriodSeconds: 30

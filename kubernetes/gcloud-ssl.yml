@@ -1,0 +1,7 @@
+apiVersion: networking.gke.io/v1beta1
+kind: ManagedCertificate
+metadata:
+  name: test-web-ssl
+spec:
+  domains:
+    - test.mgautam.com
