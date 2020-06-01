@@ -1,0 +1,39 @@
+<html>
+  <head>
+    <title>Uppy - file uploader</title>
+    <link href="{{ url_for('static', filename='uppy/v1.14.1/uppy.min.css') }}" rel="stylesheet">
+  </head>
+  <body>
+    <div id="dashboard-area"></div>
+    <!--div id="drag-drop-area"></div-->
+    <script src="{{ url_for('static', filename='uppy/v1.14.1/uppy.min.js') }}"></script>
+    <script>
+      var uppy = Uppy.Core({
+                    autoProceed: false,
+                    allowMultipleUploads: false,
+
+                    restrictions: {
+                      maxFileSize: 1000000,
+                      maxNumberOfFiles: 2,
+                      minNumberOfFiles: 0,
+                      allowedFileTypes: ['image/*', '.jpg', '.jpeg', '.png', '.gif']
+                    }
+                  })
+                  .use(Uppy.Dashboard, {
+                    inline: true,
+                    target: '#dashboard-area'
+                  })
+//                  .use(Uppy.DragDrop, { target: '#drag-drop-area' })
+                  .use(Uppy.XHRUpload, {
+                    endpoint: '/myuploader',
+                    method: 'post',
+                    formData: true
+                  })
+
+                  uppy.on('complete', (result) => {
+                    console.log('Upload complete! We’ve uploaded these files:', result.successful)
+                  })
+    </script>
+  </body>
+</html>
+
