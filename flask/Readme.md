@@ -20,3 +20,7 @@ docker run -it -v "$(pwd)"/mysqlApp:/var/www/mysqlApp --rm myflask:3.0
 # To enable development features
 export FLASK_ENV=development
 flask run --host=0.0.0.0
+
+# Nginx Deployment
+nginx -t # Check configuration
+/etc/nginx/nginx.conf # Modify global configuration

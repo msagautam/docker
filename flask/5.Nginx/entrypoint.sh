@@ -11,7 +11,7 @@ service nginx restart
 service uwsgi stop
 ln -s /etc/uwsgi/apps-available/uwsgi.ini /etc/uwsgi/apps-enabled/
 #service uwsgi restart
-nohup uwsgi /etc/uwsgi/apps-enabled/uwsgi.ini &
+nohup uwsgi /etc/uwsgi/apps-enabled/uwsgi.ini
 
 usermod -a -G www-data www-data
 chown -R www-data:www-data /tmp/
