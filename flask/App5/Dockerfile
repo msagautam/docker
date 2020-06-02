@@ -5,6 +5,7 @@ RUN apt-get install -y build-essential python3-pip
 RUN apt-get install -y uwsgi uwsgi-plugin-python
 RUN apt-get install -y curl
 RUN apt-get install -y nginx
+RUN apt-get install -y vim
 
 WORKDIR /root
 
