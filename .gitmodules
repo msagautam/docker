@@ -1,6 +1,6 @@
 [submodule "mysql/mysql-docker"]
 	path = mysql/mysql-docker
 	url = https://github.com/mysql/mysql-docker
-[submodule "flask/App4/myfilesApp/static/dropzone"]
-	path = flask/App4/myfilesApp/static/dropzone
+[submodule "flask/4.fileUploads/myfilesApp/static/dropzone"]
+	path = flask/4.fileUploads/myfilesApp/static/dropzone
 	url = https://github.com/enyo/dropzone

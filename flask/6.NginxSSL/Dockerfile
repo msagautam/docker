@@ -7,13 +7,14 @@ RUN apt-get install -y nginx
 RUN apt-get install -y curl vim
 
 WORKDIR /root
-
 COPY ./requirements.txt .
 RUN pip3 install -r ./requirements.txt
 
-COPY helloApp.conf /etc/nginx/sites-available/
 COPY uwsgi.ini /etc/uwsgi/apps-available/
 ADD helloApp /var/www/helloApp
+
+COPY k6proxy.conf /etc/nginx/sites-available/
+ADD ssl/* /etc/nginx/ssl/
 COPY entrypoint.sh .
 
 ENTRYPOINT ["./entrypoint.sh"]
