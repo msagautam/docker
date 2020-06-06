@@ -1,0 +1,43 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: kisp-web-deployment
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: kisp-web
+  template:
+    metadata:
+      name: kisp-web-pod
+      labels:
+        app: kisp-web
+    spec:
+      containers:
+      - image: mgautam/kispweb:4.0
+        imagePullPolicy: Always
+        name: kisp-nfs-container
+        env:
+        - name: KISP_ADMIN_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: kisp-secrets
+              key: KISP_ADMIN_PASSWORD
+        - name: MYSQL_ROOT_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: kisp-secrets
+              key: MYSQL_ROOT_PASSWORD
+        - name: MYSQL_ROOT_HOST
+          valueFrom:
+            secretKeyRef:
+              name: kisp-secrets
+              key: MYSQL_ROOT_HOST
+        volumeMounts:
+          # name should match from volumes section
+          - name: kisp-nfs-volume
+            mountPath: "/var/www/upload_data_files"
+      volumes:
+      - name: kisp-nfs-volume
+        persistentVolumeClaim:
+          claimName: kisp-nfs-pvc

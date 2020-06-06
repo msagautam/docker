@@ -1,19 +1,19 @@
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
-        name: nfs-server
+        name: kisp-nfs-deployment
 spec:
         replicas: 1
         selector:
                 matchLabels:
-                        role: nfs-server
+                        role: kisp-nfs-server
         template:
                 metadata:
                         labels:
-                                role: nfs-server
+                                role: kisp-nfs-server
                 spec:
                         containers:
-                        - name: nfs-server
+                        - name: kisp-nfs-container
                           image: gcr.io/google_containers/volume-nfs:0.8
                           ports:
                                 - name: nfs
@@ -26,10 +26,9 @@ spec:
                                 privileged: true
                           volumeMounts:
                                 - mountPath: /data
-                                  name: nfs-pvc
+                                  name: kisp-nfs-pvc
                         volumes:
-                                - name: nfs-pvc
+                                - name: kisp-nfs-pvc
                                   gcePersistentDisk:
-                                        # name of the created Google Compute>Persistent Disk
-                                        pdName: nfs-disk
+                                        pdName: kisp-persistent-disk
                                         fsType: ext4

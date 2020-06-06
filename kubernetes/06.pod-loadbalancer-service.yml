@@ -8,6 +8,9 @@ spec:
       protocol: TCP
       port: 80
       targetPort: 5000
-  type: LoadBalancer
+      nodePort: 31842
+  #type: ClusterIP
+  #type: LoadBalancer
+  type: NodePort
   selector:
-    app: kisp-nfs-test
+    app: kisp-web
