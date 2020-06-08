@@ -36,6 +36,11 @@ docker system prune
 # Read apache2 logs, usually present in /var/log/apache2 folder
 cat /var/log/apache2/error.log
 
+# Test web service latencies using apache bench
+ab -c 1000 -n 10000 <test_website>
+# Memory and CPU usage
+sar -ur <seconds>
+
 #Upload to dockerhub
 docker login
 docker push mgautam/myapp:1.0
@@ -45,3 +50,7 @@ git commit -m "commit before tag"
 git tag -a v1.0 -m "version 1.0"
 git push origin v1.0
 git push
+#Delete Tag
+git tag -d v1.0
+git push --delete origin v1.0
+
